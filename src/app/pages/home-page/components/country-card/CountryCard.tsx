@@ -22,10 +22,12 @@ function CountryCard({
   return (
     <div
       ref={ref}
-      className="h-[21rem] cursor-pointer overflow-hidden rounded-lg bg-dark-sec shadow-md transition-all duration-300 ease-in-out hover:-translate-y-2 hover:shadow-xl">
+      className="relative h-[21rem] cursor-pointer overflow-hidden rounded-lg bg-dark-sec shadow-md transition-all duration-300 ease-in-out hover:-translate-y-2 hover:shadow-xl">
+      {/* image loading effect */}
+      <div className="h-40 w-full animate-pulse bg-gray-600" />
       {/* lazy load image */}
       <div
-        className="h-40 w-full"
+        className="absolute top-0 z-[1] h-40 w-full"
         style={{
           backgroundImage: `url(${inView && img})`,
           backgroundRepeat: "no-repeat",
