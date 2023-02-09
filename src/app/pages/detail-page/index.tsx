@@ -1,5 +1,3 @@
-function DetailPage() {
-  return <div>DetailPage</div>;
-}
+import DetailPage from "./DetailPage";
 
 export default DetailPage;
