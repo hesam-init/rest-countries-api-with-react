@@ -1,6 +1,6 @@
 import { getCountryList } from "@api/getApi";
 import NoData from "@component/no-data";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useQuery } from "react-query";
 import { uid } from "uid";
 
@@ -12,10 +12,6 @@ import SkeletonCard from "./components/skeleton-card";
 function HomePage() {
   const [searchInput, setSearchInput] = useState<string>("");
   const [filterSelect, setFilterSelect] = useState<string>("");
-
-  useEffect(() => {
-    console.log(filterSelect);
-  }, [filterSelect]);
 
   const { data: countriesList, isLoading } = useQuery(
     "countries-list",
@@ -40,12 +36,7 @@ function HomePage() {
             setSearchInput(e.target.value);
           }}
         />
-        <Filter
-          onFilter={setFilterSelect}
-          onClick={(e) => {
-            console.log(e);
-          }}
-        />
+        <Filter onFilter={setFilterSelect} />
       </section>
 
       {/* country list */}

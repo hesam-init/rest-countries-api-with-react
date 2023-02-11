@@ -1,13 +1,13 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
-import { ComponentPropsWithoutRef, useState } from "react";
+import { useState } from "react";
 import OutsideClickHandler from "react-outside-click-handler";
 
-interface FilterProps extends ComponentPropsWithoutRef<"li"> {
+interface FilterProps {
   // eslint-disable-next-line no-unused-vars
   onFilter: (option: string) => void;
 }
 
-function Filter({ onFilter, ...rest }: FilterProps) {
+function Filter({ onFilter }: FilterProps) {
   const [selectToggle, setSelectToggle] = useState<boolean>(false);
   const [currentSelect, setCurrentSelect] = useState<string>("");
 
@@ -99,7 +99,7 @@ function Filter({ onFilter, ...rest }: FilterProps) {
                 key={option.value}
                 className={`${
                   option.value === currentSelect && "!bg-blue-600"
-                } block rounded-lg bg-black bg-opacity-25 p-2 py-1`}>
+                } block rounded-lg bg-black bg-opacity-25 p-2 py-1 hover:bg-opacity-10`}>
                 <p className="w-full cursor-pointer hover:text-white">
                   {option.key}
                 </p>
