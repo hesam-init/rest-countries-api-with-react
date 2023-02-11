@@ -1,6 +1,6 @@
 import { getCountryList } from "@api/getApi";
 import NoData from "@component/no-data";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import { uid } from "uid";
 
@@ -11,6 +11,11 @@ import SkeletonCard from "./components/skeleton-card";
 
 function HomePage() {
   const [searchInput, setSearchInput] = useState<string>("");
+  const [filterSelect, setFilterSelect] = useState<string>("");
+
+  useEffect(() => {
+    console.log(filterSelect);
+  }, [filterSelect]);
 
   const { data: countriesList, isLoading } = useQuery(
     "countries-list",
@@ -19,8 +24,9 @@ function HomePage() {
 
   const searchedCountriesList = countriesList?.filter(
     (country) =>
-      // eslint-disable-next-line implicit-arrow-linebreak
-      country.name.toLowerCase().indexOf(searchInput.toLowerCase()) >= 0
+      // eslint-disable-next-line implicit-arrow-linebreak, operator-linebreak
+      country.name.toLowerCase().indexOf(searchInput.toLowerCase()) >= 0 &&
+      country.region.toLowerCase().indexOf(filterSelect.toLowerCase()) >= 0
   );
 
   return (
@@ -35,6 +41,7 @@ function HomePage() {
           }}
         />
         <Filter
+          onFilter={setFilterSelect}
           onClick={(e) => {
             console.log(e);
           }}
@@ -42,7 +49,7 @@ function HomePage() {
       </section>
 
       {/* country list */}
-      <section className="mt-12 grid gap-[4.7rem] px-12 sm:grid-cols-2 sm:px-0 md:px-0 lg:grid-cols-3 xl:grid-cols-4">
+      <section className="mt-12 mb-6 grid gap-[4.7rem] px-12 sm:grid-cols-2 sm:px-0 md:px-0 lg:grid-cols-3 xl:grid-cols-4">
         {/* eslint-disable-next-line operator-linebreak */}
         {isLoading &&
           new Array(8).fill(0).map(() => <SkeletonCard key={`${uid()}`} />)}
