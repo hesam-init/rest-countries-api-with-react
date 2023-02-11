@@ -1,4 +1,6 @@
 import { getCountryList } from "@api/getApi";
+import NoData from "@component/no-data";
+import { useState } from "react";
 import { useQuery } from "react-query";
 import { uid } from "uid";
 
@@ -8,17 +10,35 @@ import Search from "./components/search";
 import SkeletonCard from "./components/skeleton-card";
 
 function HomePage() {
+  const [searchInput, setSearchInput] = useState<string>("");
+
   const { data: countriesList, isLoading } = useQuery(
     "countries-list",
     getCountryList
+  );
+
+  const searchedCountriesList = countriesList?.filter(
+    (country) =>
+      // eslint-disable-next-line implicit-arrow-linebreak
+      country.name.toLowerCase().indexOf(searchInput.toLowerCase()) >= 0
   );
 
   return (
     <>
       {/* search and filter */}
       <section className="flex flex-col items-center justify-between gap-y-9 md:flex-row">
-        <Search name="Search for a Country" />
-        <Filter />
+        <Search
+          isLoading={isLoading}
+          name="Search for a Country"
+          onChange={(e) => {
+            setSearchInput(e.target.value);
+          }}
+        />
+        <Filter
+          onClick={(e) => {
+            console.log(e);
+          }}
+        />
       </section>
 
       {/* country list */}
@@ -27,7 +47,7 @@ function HomePage() {
         {isLoading &&
           new Array(8).fill(0).map(() => <SkeletonCard key={`${uid()}`} />)}
 
-        {countriesList?.map((country) => (
+        {searchedCountriesList?.map((country) => (
           <CountryCard
             key={country.name}
             code={country.alpha2Code}
@@ -39,6 +59,12 @@ function HomePage() {
           />
         ))}
       </section>
+
+      {searchInput.length > 1 && searchedCountriesList?.length === 0 ? (
+        <NoData />
+      ) : (
+        ""
+      )}
     </>
   );
 }
