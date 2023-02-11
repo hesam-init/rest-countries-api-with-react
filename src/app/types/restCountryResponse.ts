@@ -20,4 +20,10 @@ export interface CountryInfoResponse extends CountriesListResponse {
     symbol: string;
   }>;
   borders: string[];
+  languages: Array<{
+    iso639_1: string;
+    iso639_2: string;
+    name: string;
+    nativeName: string;
+  }>;
 }
