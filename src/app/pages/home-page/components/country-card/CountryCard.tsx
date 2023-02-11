@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 interface CountryCardProps {
   name: string;
   img: string;
-  capital: string[];
+  capital: string;
   region: string;
   population: number;
   code: string;

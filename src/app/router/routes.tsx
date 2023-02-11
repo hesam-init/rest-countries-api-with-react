@@ -1,5 +1,5 @@
-import DetailPage from "@page/detail-page";
 import HomePage from "@page/home-page";
+import InfoPage from "@page/info-page";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 const router = createBrowserRouter([
@@ -9,7 +9,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/:country/:code",
-    element: <DetailPage />
+    element: <InfoPage />
   }
 ]);
 

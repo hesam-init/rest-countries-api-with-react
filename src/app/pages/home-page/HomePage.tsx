@@ -29,10 +29,10 @@ function HomePage() {
 
         {countriesList?.map((country) => (
           <CountryCard
-            key={country.name.common}
-            code={country.cca2}
+            key={country.name}
+            code={country.alpha2Code}
             img={country.flags.png}
-            name={country.name.common}
+            name={country.name}
             population={country.population}
             region={country.region}
             capital={country.capital}

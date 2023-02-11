@@ -1,16 +1,23 @@
 export interface CountriesListResponse {
-  name: {
-    common: string;
-    official: string;
-  };
-  capital: string[];
+  name: string;
+  alpha2Code: string;
+  capital: string;
   region: string;
-  subregion: string;
   population: number;
+  nativeName: string;
   flags: {
-    png: string;
     svg: string;
-    alt: string;
+    png: string;
   };
-  cc2a: string;
+}
+
+export interface CountryInfoResponse extends CountriesListResponse {
+  topLevelDomain: string[];
+  subregion: string;
+  currencies: Array<{
+    code: string;
+    name: string;
+    symbol: string;
+  }>;
+  borders: string[];
 }
