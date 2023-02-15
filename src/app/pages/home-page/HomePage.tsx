@@ -13,10 +13,11 @@ function HomePage() {
   const [searchInput, setSearchInput] = useState<string>("");
   const [filterSelect, setFilterSelect] = useState<string>("");
 
-  const { data: countriesList, isLoading } = useQuery(
-    "countries-list",
-    getCountryList
-  );
+  const {
+    data: countriesList,
+    isLoading,
+    isError
+  } = useQuery("countries-list", getCountryList);
 
   const searchedCountriesList = countriesList?.filter(
     (country) =>
@@ -58,8 +59,10 @@ function HomePage() {
         ))}
       </section>
 
+      {isError && <NoData message="Failed to fetch data 🤨" />}
+
       {searchInput.length > 1 && searchedCountriesList?.length === 0 ? (
-        <NoData />
+        <NoData message="Nothing find to display 🤨" />
       ) : (
         ""
       )}
