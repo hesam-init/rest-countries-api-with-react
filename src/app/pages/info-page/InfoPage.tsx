@@ -1,8 +1,9 @@
 /* eslint-disable indent */
 
 import { getCountryInfo } from "@api/getApi";
+import Icon from "@assets/icons";
 import { useQuery } from "react-query";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 import InfoText from "./components/info-text";
 
@@ -12,6 +13,7 @@ type PageParams = {
 };
 
 function InfoPage() {
+  const navigate = useNavigate();
   const { country, code } = useParams<PageParams>();
 
   const { data: countryInfo } = useQuery(
@@ -20,9 +22,15 @@ function InfoPage() {
   );
 
   return (
-    <div className="mt-4">
-      <button type="button">Back</button>
-      <div className="relative mt-28 flex flex-row">
+    <div className="mt-8 mb-9">
+      <button
+        className="flex w-[8.5rem] items-center justify-center gap-3 rounded-lg bg-dark-sec p-2 shadow-lg"
+        type="button"
+        onClick={() => navigate(-1)}>
+        <Icon.Arrow />
+        Back
+      </button>
+      <div className="relative mt-20 flex flex-row">
         {/* image loading */}
         <div className="h-[25rem] w-[35rem] animate-pulse rounded-xl bg-gray-600 shadow-lg" />
 
