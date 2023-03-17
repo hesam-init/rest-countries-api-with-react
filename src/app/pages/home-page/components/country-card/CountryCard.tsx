@@ -24,6 +24,7 @@ function CountryCard({
 
   return (
     <Link
+      state={{ isNewTab: true }}
       to={`/${name.replaceAll(" ", "-").toLowerCase()}/${code.toLowerCase()}`}>
       <div
         ref={ref}

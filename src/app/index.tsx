@@ -6,6 +6,7 @@ import Router from "./router";
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
+      cacheTime: 100000,
       refetchOnWindowFocus: false,
       refetchOnReconnect: true,
       retry: 1

@@ -1,3 +1,4 @@
+import { useClassExist } from "@hook/useClassExist";
 import { ComponentPropsWithoutRef } from "react";
 
 interface InfoTextProps extends ComponentPropsWithoutRef<"p"> {
@@ -6,12 +7,14 @@ interface InfoTextProps extends ComponentPropsWithoutRef<"p"> {
 }
 
 function InfoText({ title, value, ...rest }: InfoTextProps) {
+  const { ref, isClassExist } = useClassExist<HTMLParagraphElement>("truncate");
+
   return (
     <div className="flex">
       {/* eslint-disable-next-line react/jsx-one-expression-per-line */}
       <h1>{title}:</h1>
-      <p {...rest} className={`${rest.className} pl-1`}>
-        {value || "no data 🤨"}
+      <p ref={ref} {...rest} className={`${rest.className} pl-1 text-gray-300`}>
+        {value || "no data"}
       </p>
     </div>
   );

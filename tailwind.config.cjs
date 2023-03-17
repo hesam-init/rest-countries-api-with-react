@@ -6,7 +6,8 @@ module.exports = {
     extend: {
       screens: {
         xss: "540px",
-        tablet: "960px"
+        tablet: "960px",
+        xxl: "1440px"
       },
       colors: {
         "dark-main": "hsl(207, 26%, 17%)",

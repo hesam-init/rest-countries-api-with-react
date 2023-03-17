@@ -41,7 +41,7 @@ function HomePage() {
       </section>
 
       {/* country list */}
-      <section className="mt-12 mb-6 grid gap-[4.7rem] px-12 sm:grid-cols-2 sm:px-0 md:px-0 lg:grid-cols-3 xl:grid-cols-4">
+      <section className="mt-12 mb-6 grid gap-[4.7rem] px-8 min-[500px]:px-20 sm:grid-cols-2 sm:px-0 lg:grid-cols-3 xl:grid-cols-4">
         {/* eslint-disable-next-line operator-linebreak */}
         {isLoading &&
           new Array(8).fill(0).map(() => <SkeletonCard key={`${uid()}`} />)}
